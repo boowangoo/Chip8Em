@@ -1,3 +1,7 @@
 [submodule "PDBP"]
 	path = PDBP
 	url = https://github.com/boowangoo/PDBP.git
+[submodule "bitscan"]
+	path = bitscan
+	url = https://github.com/psanse/bitscan.git
+	branch = master

@@ -5,31 +5,22 @@
 
 #define COMPARE_EQUAL
 
-typedef uint16_t adr_t;
-typedef uint8_t reg_t;
-typedef uint8_t bt4_t;
-typedef uint8_t bt8_t;
+typedef uint16_t adr_t; // nnn address
+typedef uint8_t reg_t;  // x, y registers
+typedef uint8_t bt4_t;  // n 4-bit constant
+typedef uint8_t bt8_t;  // kk 8-bit constant
 
 class Opcodes {
 public:
-  Opcodes();
-  ~Opcodes();
   void parseCode(std::string code);
 private:
   void process_op0(std::string code);
-  void process_op1(std::string code);
-  void process_op2(std::string code);
-  void process_op3(std::string code);
-  void process_op4(std::string code);
+
   void process_op5(std::string code);
-  void process_op6(std::string code);
-  void process_op7(std::string code);
+
   void process_op8(std::string code);
   void process_op9(std::string code);
-  void process_opA(std::string code);
-  void process_opB(std::string code);
-  void process_opC(std::string code);
-  void process_opD(std::string code);
+
   void process_opE(std::string code);
   void process_opF(std::string code);
 

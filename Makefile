@@ -2,7 +2,7 @@ OBJS=PDBP/pdbp.cpp main.cpp
 
 CC=g++
 
-COMPILER_FLAGS=-w
+COMPILER_FLAGS=-std=c++11 -w
 
 LINKER_FLAGS=-lSDL2
 
@@ -17,6 +17,6 @@ remove:
 run:
 	./$(OBJ_NAME)
 
-compile-and-run:
+and-run:
 	make
 	make run
