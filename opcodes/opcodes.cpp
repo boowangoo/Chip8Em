@@ -1,7 +1,7 @@
 #include <iostream>
 #include <functional>
 
-#include "../lib/opcodes.h"
+#include "opcodes.h"
 
 adr_t get_nnn(std::string code) {
   return (adr_t) std::stoul(code.substr(1, 3), 0, 16);
@@ -23,89 +23,89 @@ reg_t get_y(std::string code) {
   return (reg_t) std::stoul(code.substr(2, 1), 0, 16);
 }
 
-void Opcodes::parseCode(std::string code) {
-  if (code.length() != 4) {
-    return;
-    // throw a "not a code" error
-  }
-  switch(code[0]) {
-  case '0':
-    process_op0(code);
-    break;
-  case '1':
-    // std::cout << "1nnn" << std::endl;
-    // std::cout << "nnn:\t" << get_nnn(code) << std::endl;
-    // flo_1nnn(get_nnn(code));
-    return FLO_1NNN;
-  case '2':
-    // std::cout << "2nnn" << std::endl;
-    // std::cout << "nnn:\t" << get_nnn(code) << std::endl;
-    // flo_2nnn(get_nnn(code));
-    return FLO_2NNN;
-  case '3':
-    // std::cout << "3xkk" << std::endl;
-    // std::cout << "x:\t" << (int) get_x(code) << std::endl;
-    // std::cout << "kk:\t" << (int) get_kk(code) << std::endl;
-    // cnd_3xkk(get_x(code), get_kk(code));
-    return CND_3XKK;
-  case '4':
-    // std::cout << "4xkk" << std::endl;
-    // std::cout << "x:\t" << (int) get_x(code) << std::endl;
-    // std::cout << "kk:\t" << (int) get_kk(code) << std::endl;
-    // cnd_4xkk(get_x(code), get_kk(code));
-    return CND_4XKK;
-  case '5':
-    process_op5(code);
-    break;
-  case '6':
-    // std::cout << "6xkk" << std::endl;
-    // std::cout << "x:\t" << (int) get_x(code) << std::endl;
-    // std::cout << "kk:\t" << (int) get_kk(code) << std::endl;
-    // cst_6xkk(get_x(code), get_kk(code));
-    return CST_6XKK;
-  case '7':
-    // std::cout << "7xkk" << std::endl;
-    // std::cout << "x:\t" << (int) get_x(code) << std::endl;
-    // std::cout << "kk:\t" << (int) get_kk(code) << std::endl;
-    // cst_7xkk(get_x(code), get_kk(code));
-    return CST_7XKK;
-  case '8':
-    process_op8(code);
-    break;
-  case '9':
-    process_op9(code);
-    break;
-  case 'a':
-    // std::cout << "Annn" << std::endl;
-    // std::cout << "nnn:\t" << get_nnn(code) << std::endl;
-    return MEM_ANNN;
-  case 'b':
-    std::cout << "Bnnn" << std::endl;
-    std::cout << "nnn:\t" << get_nnn(code) << std::endl;
-    return FLO_BNNN;
-  case 'c':
-    // std::cout << "Cxkk" << std::endl;
-    // std::cout << "x:\t" << (int) get_x(code) << std::endl;
-    // std::cout << "kk:\t" << (int) get_kk(code) << std::endl;
-    return RND_CXKK;
-  case 'd':
-    // std::cout << "Dxyn" << std::endl;
-    // std::cout << "x:\t" << (int) get_x(code) << std::endl;
-    // std::cout << "y:\t" << (int) get_y(code) << std::endl;
-    // std::cout << "n:\t" << (int) get_n(code) << std::endl;
-    return DSP_DXYN;
-  case 'e':
-    process_opE(code);
-    break;
-  case 'f':
-    process_opF(code);
-    break;
-  default:
-    // not a code
-    std::cout << "NOT A FUCKING INSTRUCTION" << std::endl;
-    break;
-  }
-}
+// void Opcodes::parseCode(std::string code) {
+//   if (code.length() != 4) {
+//     return;
+//     // throw a "not a code" error
+//   }
+//   switch(code[0]) {
+//   case '0':
+//     process_op0(code);
+//     break;
+//   case '1':
+//     // std::cout << "1nnn" << std::endl;
+//     // std::cout << "nnn:\t" << get_nnn(code) << std::endl;
+//     // flo_1nnn(get_nnn(code));
+//     return FLO_1NNN;
+//   case '2':
+//     // std::cout << "2nnn" << std::endl;
+//     // std::cout << "nnn:\t" << get_nnn(code) << std::endl;
+//     // flo_2nnn(get_nnn(code));
+//     return FLO_2NNN;
+//   case '3':
+//     // std::cout << "3xkk" << std::endl;
+//     // std::cout << "x:\t" << (int) get_x(code) << std::endl;
+//     // std::cout << "kk:\t" << (int) get_kk(code) << std::endl;
+//     // cnd_3xkk(get_x(code), get_kk(code));
+//     return CND_3XKK;
+//   case '4':
+//     // std::cout << "4xkk" << std::endl;
+//     // std::cout << "x:\t" << (int) get_x(code) << std::endl;
+//     // std::cout << "kk:\t" << (int) get_kk(code) << std::endl;
+//     // cnd_4xkk(get_x(code), get_kk(code));
+//     return CND_4XKK;
+//   case '5':
+//     process_op5(code);
+//     break;
+//   case '6':
+//     // std::cout << "6xkk" << std::endl;
+//     // std::cout << "x:\t" << (int) get_x(code) << std::endl;
+//     // std::cout << "kk:\t" << (int) get_kk(code) << std::endl;
+//     // cst_6xkk(get_x(code), get_kk(code));
+//     return CST_6XKK;
+//   case '7':
+//     // std::cout << "7xkk" << std::endl;
+//     // std::cout << "x:\t" << (int) get_x(code) << std::endl;
+//     // std::cout << "kk:\t" << (int) get_kk(code) << std::endl;
+//     // cst_7xkk(get_x(code), get_kk(code));
+//     return CST_7XKK;
+//   case '8':
+//     process_op8(code);
+//     break;
+//   case '9':
+//     process_op9(code);
+//     break;
+//   case 'a':
+//     // std::cout << "Annn" << std::endl;
+//     // std::cout << "nnn:\t" << get_nnn(code) << std::endl;
+//     return MEM_ANNN;
+//   case 'b':
+//     std::cout << "Bnnn" << std::endl;
+//     std::cout << "nnn:\t" << get_nnn(code) << std::endl;
+//     return FLO_BNNN;
+//   case 'c':
+//     // std::cout << "Cxkk" << std::endl;
+//     // std::cout << "x:\t" << (int) get_x(code) << std::endl;
+//     // std::cout << "kk:\t" << (int) get_kk(code) << std::endl;
+//     return RND_CXKK;
+//   case 'd':
+//     // std::cout << "Dxyn" << std::endl;
+//     // std::cout << "x:\t" << (int) get_x(code) << std::endl;
+//     // std::cout << "y:\t" << (int) get_y(code) << std::endl;
+//     // std::cout << "n:\t" << (int) get_n(code) << std::endl;
+//     return DSP_DXYN;
+//   case 'e':
+//     process_opE(code);
+//     break;
+//   case 'f':
+//     process_opF(code);
+//     break;
+//   default:
+//     // not a code
+//     std::cout << "NOT A FUCKING INSTRUCTION" << std::endl;
+//     break;
+//   }
+// }
 
 void Opcodes::process_op0(std::string code) {
   if (code == "0E00")
